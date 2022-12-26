@@ -71,12 +71,19 @@ def dirsshfs(info):
         make = "mkdir " + path
         s = subprocess.run(make, shell=True)
 
-        bashPath = '/home/fares/rbd/tools/rpi-Tools/test/bahstest.sh'
-        # print(bashPath, str(i[1]), path)
-        subprocess.run([bashPath, i[1], path], shell=True)
+        bashPath = '/home/fares/rbd/tools/rpi-Tools/test/bashtest.sh'
+        print(bashPath, str(i[1]), path)
+
+        print ("ip adress: " + i[1])
+
+        bash_args = [i[1], path]
+        subprocess.run(['bash', bashPath] + bash_args)
+
+
+        # r = subprocess.run([bashPath, i[1], path], shell=True)
 
 def main():
-    writeIP(int(sys.argv[1]))
+    # writeIP(int(sys.argv[1]))
     adresses = readIP()
     info = get_info(adresses)
     dirsshfs(info)
