@@ -83,7 +83,7 @@ def dirsshfs(info):
         # r = subprocess.run([bashPath, i[1], path], shell=True)
 
 def main():
-    writeIP(int(sys.argv[1]))
+    # writeIP(int(sys.argv[1]))
     adresses = readIP()
     info = get_info(adresses)
     dirsshfs(info)
