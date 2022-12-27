@@ -66,24 +66,26 @@ def get_info(adresses):
     return arr
 
 def dirsshfs(info):
+    path = '/home/fares/rbd/tools/rpi-Tools/ssh_automation/sshDirs/'
+    removeDirs = "rm -rf " + path + "*"
+    subprocess.run(removeDirs, shell=True)
+    
     for i in info:
-        path = '/home/fares/rbd/tools/rpi-Tools/test/automation_test/dirtest/' + i[0]
-        make = "mkdir " + path
-        s = subprocess.run(make, shell=True)
+        dir_path = path + i[0]
+        make = "mkdir " + dir_path
+        subprocess.run(make, shell=True)
 
-        bashPath = '/home/fares/rbd/tools/rpi-Tools/test/bashtest.sh'
-        print(bashPath, str(i[1]), path)
+        bashPath = '/home/fares/rbd/tools/rpi-Tools/ssh_automation/ssh_sshfs.sh'
+        print(bashPath, str(i[1]), dir_path)
 
         print ("ip adress: " + i[1])
 
-        bash_args = [i[1], path]
+        bash_args = [i[1], dir_path]
         subprocess.run(['bash', bashPath] + bash_args)
 
 
-        # r = subprocess.run([bashPath, i[1], path], shell=True)
-
 def main():
-    # writeIP(int(sys.argv[1]))
+    writeIP(int(sys.argv[1]))
     adresses = readIP()
     info = get_info(adresses)
     dirsshfs(info)
