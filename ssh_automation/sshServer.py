@@ -125,16 +125,16 @@ def tmux_script_maker(info):
             output_file.write("tmux send-keys '" + sshCommand + "' Enter\n")
 
 def run_in_new_cmd(command):
-    subprocess.run('gnome-terminal -- sh -c "bash -c \"{}; exec bash\""'.format(command), shell=True)
+    subprocess.run(f'gnome-terminal -- sh -c "bash -c \"{command}; exec bash\""', shell=True)
 
 
 def tmux_win():
     tmux_script_path = '/home/fares/rbd/tools/rpi-Tools/ssh_automation/tmux_script.sh'
     subprocess.run("tmux kill-session -t sshServer", shell=True)
     
-    cp = ('/home/fares/rbd/tools/rpi-Tools/ssh_automation/tmux-sendall {} \"\"'.format(session_name))
+    cp = (f'/home/fares/rbd/tools/rpi-Tools/ssh_automation/tmux-sendall {session_name} \"\"')
 
-    subprocess.run('echo {} | xclip -selection clipboard'.format(cp), shell=True)
+    subprocess.run(f'echo {cp} | xclip -selection clipboard', shell=True)
     #this needs to be the last command
     run_in_new_cmd('tmux && ' + tmux_script_path)
 
