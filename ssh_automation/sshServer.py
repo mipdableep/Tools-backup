@@ -2,6 +2,8 @@ import socket
 import sys
 import subprocess
 
+session_name = "sshServer"
+
 def writeIP(connection_num):
     connection_counter = 0
 
@@ -75,20 +77,75 @@ def dirsshfs(info):
         make = "mkdir " + dir_path
         subprocess.run(make, shell=True)
 
-        bashPath = '/home/fares/rbd/tools/rpi-Tools/ssh_automation/ssh_sshfs.sh'
-        print(bashPath, str(i[1]), dir_path)
+        # bashPath = '/home/fares/rbd/tools/rpi-Tools/ssh_automation/ssh_sshfs.sh'
+        # print(bashPath, str(i[1]), dir_path)
 
-        print ("ip adress: " + i[1])
+        # print ("ip adress: " + i[1])
 
-        bash_args = [i[1], dir_path]
-        subprocess.run(['bash', bashPath] + bash_args)
+        # bash_args = [i[1], dir_path]
+        # subprocess.run(['bash', bashPath] + bash_args)
+
+def tmux_script_maker(info):
+    
+    # Open the output file
+    with open("tmux_script.sh", "w") as output_file:
+
+        # Write the shebang line
+        output_file.write("#!/bin/bash\n\n")
+        output_file.write("tmux rename-session " + session_name + "\n")
+
+        first = True
+        # Iterate over the number of windows
+        for raspberry in info:
+            name = raspberry[0]
+            ip = str(raspberry[1])
+            sshFS_dir = '/home/fares/rbd/tools/rpi-Tools/ssh_automation/sshDirs/' + name
+            
+            if first:
+                output_file.write("tmux rename-window " + name + "\n")
+                first = False
+            else:
+                # Create a new window
+                output_file.write("tmux new-window -n Window" + name + "\n")
+
+            #rename pane
+            output_file.write("tmux select-pane -T sshFS\n")
+            # do sshfs command
+            sshFScommand = "sudo sshfs -o allow_other pi@" + ip + ":/home/pi/ " + sshFS_dir + " && cd " + sshFS_dir
+            output_file.write("tmux send-keys '" + sshFScommand + "' Enter\n")
+
+            #split
+            output_file.write("tmux split-window -h\n")
+            #select other pane
+            output_file.write("tmux selectp -t 1\n")
+            #rename pane
+            output_file.write("tmux select-pane -T PI-" + name + "\n")
+            #do ssh command
+            sshCommand = "sudo ssh pi@" + ip
+            output_file.write("tmux send-keys '" + sshCommand + "' Enter\n")
+
+def run_in_new_cmd(command):
+    subprocess.run('gnome-terminal -- sh -c "bash -c \"{}; exec bash\""'.format(command), shell=True)
 
 
+def tmux_win():
+    tmux_script_path = '/home/fares/rbd/tools/rpi-Tools/ssh_automation/tmux_script.sh'
+    subprocess.run("tmux kill-session -t sshServer", shell=True)
+    
+    cp = ('/home/fares/rbd/tools/rpi-Tools/ssh_automation/tmux-sendall {} \"\"'.format(session_name))
+
+    subprocess.run('echo {} | xclip -selection clipboard'.format(cp), shell=True)
+    #this needs to be the last command
+    run_in_new_cmd('tmux && ' + tmux_script_path)
+
+    
 def main():
-    writeIP(int(sys.argv[1]))
+    # writeIP(int(sys.argv[1]))
     adresses = readIP()
     info = get_info(adresses)
     dirsshfs(info)
+    tmux_script_maker(info)
+    tmux_win()
 
 
 
