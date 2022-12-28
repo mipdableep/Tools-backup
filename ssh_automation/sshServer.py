@@ -140,7 +140,9 @@ def tmux_win():
 
     
 def main():
-    # writeIP(int(sys.argv[1]))
+    if len(sys.argv) > 1:
+        writeIP(int(sys.argv[1]))
+
     adresses = readIP()
     info = get_info(adresses)
     dirsshfs(info)
