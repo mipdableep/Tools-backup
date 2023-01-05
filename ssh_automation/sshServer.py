@@ -3,6 +3,7 @@ import sys
 import subprocess
 
 session_name = "sshServer"
+baseDirPath = "/home/fares/rbd/tools/rpi-Tools/ssh_automation/"
 
 def writeIP(connection_num):
     connection_counter = 0
@@ -68,7 +69,7 @@ def get_info(adresses):
     return arr
 
 def dirsshfs(info):
-    path = '/home/fares/rbd/tools/rpi-Tools/ssh_automation/sshDirs/'
+    path = baseDirPath + 'sshDirs/'
     removeDirs = "rm -rf " + path + "*"
     subprocess.run(removeDirs, shell=True)
     
@@ -99,7 +100,7 @@ def tmux_script_maker(info):
         for raspberry in info:
             name = raspberry[0]
             ip = str(raspberry[1])
-            sshFS_dir = '/home/fares/rbd/tools/rpi-Tools/ssh_automation/sshDirs/' + name
+            sshFS_dir = baseDirPath + 'sshDirs/' + name
             
             if first:
                 output_file.write("tmux rename-window " + name + "\n")
@@ -129,10 +130,10 @@ def run_in_new_cmd(command):
 
 
 def tmux_win():
-    tmux_script_path = '/home/fares/rbd/tools/rpi-Tools/ssh_automation/tmux_script.sh'
+    tmux_script_path = baseDirPath + 'tmux_script.sh'
     subprocess.run("tmux kill-session -t sshServer", shell=True)
     
-    cp = (f'/home/fares/rbd/tools/rpi-Tools/ssh_automation/tmux-sendall {session_name} \"\"')
+    cp = (baseDirPath + f'tmux-sendall {session_name} \"\"')
 
     subprocess.run(f'echo {cp} | xclip -selection clipboard', shell=True)
     #this needs to be the last command
@@ -145,6 +146,7 @@ def main():
 
     adresses = readIP()
     info = get_info(adresses)
+    print(info)
     dirsshfs(info)
     tmux_script_maker(info)
     tmux_win()
