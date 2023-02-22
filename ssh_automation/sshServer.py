@@ -45,7 +45,7 @@ def writeIP(connection_num):
 
 def readIP():
     arr = []
-    with open("client_ips.txt", "r") as ipRead:
+    with open(baseDirPath + "/client_ips.txt", "r") as ipRead:
         lines = ipRead.readlines()
         count = 0
         # Strips the newline character
@@ -79,15 +79,8 @@ def dirsshfs(info):
         make = "mkdir " + dir_path
         subprocess.run(make, shell=True)
 
-        # bashPath = '/home/fares/rbd/tools/rpi-Tools/ssh_automation/ssh_sshfs.sh'
-        # print(bashPath, str(i[1]), dir_path)
 
-        # print ("ip adress: " + i[1])
-
-        # bash_args = [i[1], dir_path]
-        # subprocess.run(['bash', bashPath] + bash_args)
-
-def tmux_script_maker(info, do_sshfs):
+def tmux_script_maker(info):
     
     # Open the output file
     with open("tmux_script.sh", "w") as output_file:
@@ -111,22 +104,27 @@ def tmux_script_maker(info, do_sshfs):
             counter += 1
 
         output_file.write("tmux select-layout even-horizontal\n")
-        output_file.write("tmux select-pane -R\n")
+        output_file.write("tmux select-pane -R\n\n")
 
-        if do_sshfs:
-            for raspberry in info:
-                name = raspberry[0]
-                ip = str(raspberry[1])
-                sshFS_dir = baseDirPath + 'sshDirs/' + name
-            
-                output_file.write("\ntmux split-window -v\n")
+        output_file.write("tmux new-window -n sshfs \n")
 
-                #rename pane
-                output_file.write("tmux select-pane -T sshFS-" + name + "\n")
-                # do sshfs command
-                sshFScommand = "sudo sshfs -o allow_other pi@" + ip + ":/home/pi/ " + sshFS_dir + " && cd " + sshFS_dir
-                output_file.write("tmux send-keys '" + sshFScommand + "' Enter\n")
-                output_file.write("tmux select-pane -R\n")
+        counter = 0
+
+        for raspberry in info:
+            name = raspberry[0]
+            ip = str(raspberry[1])
+            sshFS_dir = baseDirPath + 'sshDirs/' + name
+
+            #rename pane
+            output_file.write("tmux select-pane -T sshFS-" + name + "\n")
+            # do sshfs command
+            sshFScommand = "sudo sshfs -o allow_other pi@" + ip + ":/home/pi/ " + sshFS_dir + " && cd " + sshFS_dir
+            output_file.write("tmux send-keys '" + sshFScommand + "' Enter\n")
+            if not counter == len(info) - 1:
+                output_file.write("\ntmux split-window -h\n")
+            counter += 1
+    
+        output_file.write("tmux select-layout even-horizontal\n")
 
 def run_in_new_cmd(command):
     subprocess.run(f'gnome-terminal -- sh -c "bash -c \"{command}; exec bash\""', shell=True)
@@ -145,7 +143,7 @@ def tmux_win():
     
 def main():
     if len(sys.argv) > 1:
-        if sys.argv[1] != 0:
+        if sys.argv[1] != '0':
             writeIP(int(sys.argv[1]))
 
     adresses = readIP()
@@ -153,17 +151,10 @@ def main():
     
     print(info)
     
-    if len(sys.argv) > 2:
-        if sys.argv[2] == "ssh":
-            no_sshFs = True
+    no_sshFs = False
 
-
-    if no_sshFs:
-        tmux_script_maker(info, False)
-    
-    else:
-        dirsshfs(info)
-        tmux_script_maker(info, True)
+    dirsshfs(info)
+    tmux_script_maker(info)
     tmux_win()
 
 
