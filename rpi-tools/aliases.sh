@@ -38,7 +38,7 @@
     alias emulateRpi='gnome-disk-image-mounter -w /home/fares/rbd/rpi_img_backup/emulate_lite_64.img'
     alias cdtopi='cd /media/fares/rootfs/home/pi/'
     alias rpipinout='eog /home/fares/rbd/tools/hardwere &'
-    alias runsshServer="cd /home/fares/rbd/tools/rpi-Tools/ssh_automation && python3 sshServer.py $1"
+    alias runsshServer="cd /home/fares/rbd/tools/Tools-backups/rpi-Tools/ssh_automation && python3 sshServer.py $1"
 
     #bashrc related
     alias runbashrc='. ~/.bashrc'

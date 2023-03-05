@@ -4,7 +4,7 @@ import subprocess
 import argparse
 
 session_name = "sshServer"
-baseDirPath = "/home/fares/rbd/tools/rpi-Tools/ssh_automation/"
+baseDirPath = "/home/fares/rbd/tools/Tools-backups/rpi-Tools/ssh_automation/"
 
 def writeIP(connection_num):
     connection_counter = 0
@@ -43,9 +43,9 @@ def writeIP(connection_num):
                 connection.close()
                 connection_counter += 1
 
-def readIP():
+def readIP(file):
     arr = []
-    with open(baseDirPath + "/client_ips.txt", "r") as ipRead:
+    with open(baseDirPath + "/" + file, "r") as ipRead:
         lines = ipRead.readlines()
         count = 0
         # Strips the newline character
@@ -142,17 +142,21 @@ def tmux_win():
 
     
 def main():
+
     if len(sys.argv) > 1:
-        if sys.argv[1] != '0':
+
+        if sys.argv[1] == '0':
+            adresses = readIP("client_ips.txt")
+            
+        elif sys.argv[1] == "rpi":
+            adresses = readIP("client_ips_rpi.txt")
+            
+        else:
             writeIP(int(sys.argv[1]))
+            adresses = readIP("client_ips.txt")
 
-    adresses = readIP()
     info = get_info(adresses)
-    
     print(info)
-    
-    no_sshFs = False
-
     dirsshfs(info)
     tmux_script_maker(info)
     tmux_win()

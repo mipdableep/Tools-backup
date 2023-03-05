@@ -1,0 +1,11 @@
+{
+    "chessboard_width":7,
+    "chessboard_height":5,
+
+    "chessboard_square_size":80,
+
+    "img_folder_path":"../images/",
+
+    "output_file_name":"drone1"
+    
+}
