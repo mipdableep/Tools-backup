@@ -13,7 +13,6 @@ def main():
     if len(argv) > 2:
         save_path = argv[2]
     
-    tello = False
     cap_string = "udp://0.0.0.0:11111?overrun_nonfatal=1&fifo_size=5000"
     if len(argv) > 3:
         if argv[3] in [f"{i}" for i in range (10)]:
