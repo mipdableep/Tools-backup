@@ -4,7 +4,7 @@ import subprocess
 import argparse
 
 session_name = "sshServer"
-baseDirPath = "/home/fares/rbd/tools/Tools-backups/rpi-Tools/ssh_automation/"
+baseDirPath = "/home/fares/rbd/tools/Tools-backups/rpi-tools/"
 
 def writeIP(connection_num):
     connection_counter = 0
@@ -138,7 +138,8 @@ def tmux_win():
 
     subprocess.run(f'echo {cp} | xclip -selection clipboard', shell=True)
     #this needs to be the last command
-    run_in_new_cmd('tmux && ' + tmux_script_path)
+    # run_in_new_cmd('tmux && ' + tmux_script_path)
+    subprocess.run('tmux', shell=True)
 
     
 def main():
