@@ -3,7 +3,6 @@ then
     echo -e "\nin chroot, breaking\n"
 else
 
-    while ! [[ $(ip a | grep "inet 192") ]]; do sleep 1s; done
-    
+    sleep 3
     python3 /home/pi/sshServer_boot/sshClient.py    
 fi
