@@ -2,15 +2,16 @@
 #include <vector>
 #include <string>
 #include <nlohmann/json.hpp>
+#include <fstream>
 
 int main()
 {
     // Define the chessboard size and square size
 
-    std::ifstream programGlobal("../config.json");
+    std::ifstream config("../config.json");
     nlohmann::json vars;
-    programGlobal >> vars;
-    programGlobal.close();
+    config >> vars;
+    config.close();
 
 
     int chessboard_width = vars["chessboard_width"];
@@ -21,6 +22,7 @@ int main()
     std::string img_folder_path = vars["img_folder_path"];
 
     std::string output_file_name = vars["output_file_name"];
+    std::string output_file_path = vars["output_file_path"];
 
 
     cv::Size boardSize(chessboard_width, chessboard_height);
@@ -77,7 +79,7 @@ int main()
     cv::calibrateCamera(objectPoints, imagePoints, imageSize, cameraMatrix, distCoeffs, cv::noArray(), cv::noArray());
 
     // Save the camera matrix and distortion coefficients to a YAML file
-    cv::FileStorage fs("../"+output_file_name+".yaml", cv::FileStorage::WRITE);
+    cv::FileStorage fs("" +output_file_path + output_file_name+".yaml", cv::FileStorage::WRITE);
     fs << "image_width" << imageSize.width;
     fs << "image_height" << imageSize.height;
     fs << "camera_matrix" << cameraMatrix;

@@ -6,3 +6,5 @@ rpi-tools/.vscode/settings.json
 images/
 build/
 *.yaml
+**/__pycache__/
+**/.vscode/

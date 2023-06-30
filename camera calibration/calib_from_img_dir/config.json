@@ -2,10 +2,10 @@
     "chessboard_width":7,
     "chessboard_height":5,
 
-    "chessboard_square_size":80,
+    "chessboard_square_size":60,
 
-    "img_folder_path":"../images/",
+    "img_folder_path":"/home/fares/rbd/tools/Tools-backups/camera calibration/tello_frame_collection/images/",
 
-    "output_file_name":"drone5"
-    
+    "output_file_name":"20_from_phone_vid",
+    "output_file_path":"/home/fares/rbd/tools/calib/"
 }
