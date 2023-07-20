@@ -1,10 +1,4 @@
-rpi-tools/ipServer/client_ips.txt
-rpi-tools/ssh_automation/sshDirs
-rpi-tools/ssh_automation/client_ips.txt
-rpi-tools/ssh_automation/tmux_script.sh
-rpi-tools/.vscode/settings.json
-images/
-build/
-*.yaml
+**/images/
+**/build/
 **/__pycache__/
 **/.vscode/

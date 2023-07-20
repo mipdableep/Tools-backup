@@ -1,0 +1,6 @@
+alias runbashrc='. ~/.bashrc'
+alias killalljobs='for i in {1..10}; do kill -9 %$i && echo $i; done'
+alias build_ws_colcon='cd /ws_ros/ws && colcon build && source /ws_ros/ws/install/setup.bash'
+alias remove_ws='cd /ws_ros/ws/ && rm -rf build log install'
+alias remove_rebuild_ws_colcon='remove_ws && build_ws_colcon'
+alias run_node_test_yaml='ros2 run swarm_env_detector location_peer_detection --ros-args --params-file /ws_ros/ws/src/swarm_env_detector/params/test_run.yaml'
