@@ -1,0 +1,85 @@
+// Place your key bindings in this file to override the defaultsauto[]
+// path = ~/.config/Code/User/keybindings.json
+[
+    //debug
+    {
+        "key": "ctrl+shift+d ctrl+shift+s",
+        "command": "workbench.view.debug",
+        "when": "viewContainer.workbench.view.debug.enabled"
+    },
+    //integrated terminal
+    {
+        "key": "ctrl+shift+delete",
+        "command": "workbench.action.terminal.kill"
+    },
+    // side bar
+    {
+        "key": "ctrl+shift+- ctrl+shift+backspace",
+        "command": "workbench.action.toggleActivityBarVisibility"
+    },
+    {
+        "key": "ctrl+q ctrl+q",
+        "command": "-workbench.action.quit"
+    },
+    // terminal diable select
+    {
+        "key": "ctrl+shift+up",
+        "command": "-workbench.action.terminal.selectToPreviousCommand",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "ctrl+shift+down",
+        "command": "-workbench.action.terminal.selectToNextCommand",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+    },
+    // terminal size change
+    {
+        "key": "ctrl+space ctrl+up",
+        "command": "workbench.action.terminal.resizePaneUp",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "ctrl+space ctrl+down",
+        "command": "workbench.action.terminal.resizePaneDown",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+    },
+    // diagnostic instead of f12
+    {
+        "key": "f4",
+        "command": "-search.action.focusNextSearchResult",
+        "when": "hasSearchResult || inSearchEditor"
+    },
+    {
+        "key": "f4",
+        "command": "-references-view.next",
+        "when": "reference-list.hasResult && references-view.canNavigate"
+    },
+    {
+        "key": "f4",
+        "command": "-goToNextReference",
+        "when": "inReferenceSearchEditor || referenceSearchVisible"
+    },
+    {
+        "key": "f4",
+        "command": "editor.action.revealDefinition",
+        "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+    },
+    // remove f12 (for guake)
+    {
+        "key": "f12",
+        "command": "-editor.action.revealDefinition",
+        "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+    },
+    // file explorer
+    {
+        "key": "ctrl+alt+e",
+        "command": "workbench.view.explorer",
+        "when": "viewContainer.workbench.view.explorer.enabled"
+    },
+    // dosent work
+    {
+        "key": "ctrl+shift+e",
+        "command": "-workbench.view.explorer",
+        "when": "viewContainer.workbench.view.explorer.enabled"
+    }
+]

@@ -1,0 +1,48 @@
+tools:
+    appimagelauncher
+    cura(for backup option)
+    whatsdesk
+    guake
+    pishrink
+
+    FISH!!!
+
+code extentions:
+    aaron-bond.better-comments
+    christian-kohler.path-intellisense
+    cschlosser.doxdocgen
+    donjayamanne.python-environment-manager
+    donjayamanne.python-extension-pack
+    esbenp.prettier-vscode
+    Gruntfuggly.todo-tree
+    hediet.debug-visualizer
+    hediet.vscode-drawio
+    jeff-hykin.better-cpp-syntax
+    johnpapa.vscode-peacock
+    josetr.cmake-language-support-vscode
+    KevinRose.vsc-python-indent
+    lunaryorn.fish-ide
+    MathWorks.language-matlab
+    mhutchie.git-graph
+    ms-azuretools.vscode-docker
+    ms-dotnettools.vscode-dotnet-runtime
+    ms-python.isort
+    ms-python.python
+    ms-python.vscode-pylance
+    ms-vscode-remote.remote-containers
+    ms-vscode.cmake-tools
+    ms-vscode.cpptools
+    ms-vscode.cpptools-extension-pack
+    ms-vscode.cpptools-themes
+    njpwerner.autodocstring
+    nonanonno.vscode-ros2
+    oderwat.indent-rainbow
+    PeterSchmalfeldt.explorer-exclude
+    PKief.material-icon-theme
+    SirTori.indenticator
+    skyapps.fish-vscode
+    streetsidesoftware.code-spell-checker
+    twxs.cmake
+    VisualStudioExptTeam.intellicode-api-usage-examples
+    VisualStudioExptTeam.vscodeintellicode
+    wholroyd.jinja
