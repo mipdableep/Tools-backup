@@ -2,8 +2,9 @@ tools:
     appimagelauncher
     cura(for backup option)
     whatsdesk
-    guake
+    guake - theme tango
     pishrink
+    extention - wintile
 
     FISH!!!
 

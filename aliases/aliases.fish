@@ -5,24 +5,24 @@ function start_conda
     end
 end
 
+function mkcdir
+    mkdir -p -- $argv[1]
+    cd $argv[1]
+end
+
 # fish
 alias runfish='source ~/.config/fish/config.fish'
 alias codefish='code /home/fares/rbd/tools/Tools-backups/aliases/aliases.fish'
 alias codeFish_conf='code /home/fares/.config/fish/config.fish'
 
 #system
-alias cling='/home/fares/rbd/tools/cling/inst/bin/cling'
-alias codeTools='code /home/fares/rbd/tools/Tools-backups'
-alias cdTools='cd /home/fares/rbd/tools'
 alias n='nautilus -w . &'
-alias getip='hostname -I | cut -d " " -f 1'
 alias gfp='git fetch && git pull'
 alias Aumountall='sudo umount /media/fares/*'
 alias Fumountall='sudo umount -f /media/fares/*'
 alias copy='xclip -selection clipboard'
 alias pwdc='pwd | copy'
 alias pwdcc='echo "cd" (pwd) | copy'
-alias py='python3'
 alias cp_progress='rsync -ah --progress'
 # destroy and build
 alias rcm='rm -rf ../build/* && cmake .. && make -j'
@@ -33,6 +33,8 @@ alias reset_time="sudo date -s (wget --method=HEAD -qSO- --max-redirect=0 google
 alias untar='tar -xzf'
 # copy the fish shabang
 alias cp_fish_shabang='echo "#!/usr/bin/env fish" | copy'
+# matlab
+alias matlab='/home/fares/rbd/tools/matlab/data/bin/matlab &'
 alias n_tmux='gnome-terminal --command="tmux"'
 alias run_ros_docker='./setup_ros-alate.sh && source ~/.bashrc | cp && cd /home/fares/rbd/projects/HALEHAKA/ros-libs/ && ./run_ros_docker.fish'
 alias ros_tmux='/home/fares/rbd/tools/Tools-backups/scripts/tmux_ros.fish'
