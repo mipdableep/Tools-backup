@@ -12,14 +12,17 @@ end
 
 # fish
 alias runfish='source ~/.config/fish/config.fish'
-alias codefish='code /home/fares/rbd/tools/Tools-backups/aliases/aliases.fish'
-alias codeFish_conf='code /home/fares/.config/fish/config.fish'
+alias codefish='code /home/ido/Tools/Tools-backup/aliases/aliases.fish'
+alias codeFish_conf='code ~/.config/fish/config.fish'
+
+# bat
+alias cat='batcat'
 
 #system
 alias n='nautilus -w . &'
 alias gfp='git fetch && git pull'
-alias Aumountall='sudo umount /media/fares/*'
-alias Fumountall='sudo umount -f /media/fares/*'
+alias Aumountall='sudo umount /media/ido/*'
+alias Fumountall='sudo umount -f /media/ido/*'
 alias copy='xclip -selection clipboard'
 alias pwdc='pwd | copy'
 alias pwdcc='echo "cd" (pwd) | copy'
@@ -34,22 +37,8 @@ alias untar='tar -xzf'
 # copy the fish shabang
 alias cp_fish_shabang='echo "#!/usr/bin/env fish" | copy'
 # matlab
-alias matlab='/home/fares/rbd/tools/matlab/data/bin/matlab &'
 alias n_tmux='gnome-terminal --command="tmux"'
 alias run_ros_docker='./setup_ros-alate.sh && source ~/.bashrc | cp && cd /home/fares/rbd/projects/HALEHAKA/ros-libs/ && ./run_ros_docker.fish'
-alias ros_tmux='/home/fares/rbd/tools/Tools-backups/scripts/tmux_ros.fish'
-alias ros_quad_tmux='/home/fares/rbd/tools/Tools-backups/scripts/ros_quad.fish'
-
-#rpi
-alias emulateRpi='gnome-disk-image-mounter -w /home/fares/rbd/rpi_img_backup/emulate_lite_64.img'
-alias emulateROS_SWARM='gnome-disk-image-mounter -w /home/fares/rbd/rpi_img_backup/ROS_rasp_lite_64.img'
-alias cdtopi='cd /media/fares/rootfs/home/pi/'
-alias rpipinout='eog /home/fares/rbd/tools/hardwere &'
-alias runsshServer="cd /home/fares/rbd/tools/Tools-backups/rpi-tools && python3 sshServer.py $1"
-alias Sumountsshfs="sudo umount /home/fares/rbd/tools/Tools-backups/rpi-tools/sshDirs/*"
-alias internal-pi-chroot="sudo /home/fares/scripts/internal-chroot-to-pi.sh"
-alias external-pi-chroot="bash /home/fares/scripts/chrootRunner.sh"
-
 
 function ifs
     firefox --private-window "https://drive.google.com/drive/u/0/my-drive" &
