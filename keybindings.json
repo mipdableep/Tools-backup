@@ -1,12 +1,6 @@
 // Place your key bindings in this file to override the defaultsauto[]
 // path = ~/.config/Code/User/keybindings.json
 [
-    //debug
-    {
-        "key": "ctrl+shift+d ctrl+shift+s",
-        "command": "workbench.view.debug",
-        "when": "viewContainer.workbench.view.debug.enabled"
-    },
     //integrated terminal
     {
         "key": "ctrl+shift+delete",
@@ -70,16 +64,13 @@
         "command": "-editor.action.revealDefinition",
         "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
     },
-    // file explorer
     {
-        "key": "ctrl+alt+e",
-        "command": "workbench.view.explorer",
-        "when": "viewContainer.workbench.view.explorer.enabled"
+        "key": "ctrl+k ctrl+space",
+        "command": "python.execInTerminal-icon"
     },
-    // dosent work
     {
-        "key": "ctrl+shift+e",
-        "command": "-workbench.view.explorer",
-        "when": "viewContainer.workbench.view.explorer.enabled"
+        "key": "ctrl+down",
+        "command": "workbench.action.debug.stepInto",
+        "when": "debugState != 'inactive'"
     }
 ]
