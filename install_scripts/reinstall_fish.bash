@@ -14,7 +14,7 @@ function ask_yes_or_no {
 # Given Ubuntu:
 
 if ask_yes_or_no "Install fish shell?"; then
-    sudo apt-get install fish -y
+    sudo nala install fish -y
 fi
 
 # Set fish as default shell
